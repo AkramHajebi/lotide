@@ -1,9 +1,21 @@
 // FUNCTION IMPLEMENTATION
 const assertEqual = function(actual, expected) {
-  if (actual !== expected) {
-    console.log(`Assertion Failed: ${actual} !== ${expected}`);
+ 
+  let array1 = Object.keys(actual);
+  let array2 = Object.keys(expected);
+
+  console.log(array1);
+  console.log(array2);
+
+  let isSame = (array1.length === array2.length) && array1.every(function(element, index) {
+    return (element === array2[index] && actual[element] === expected[element]); /// check if the element(key) exist in both object & if the value for the key are same for both objects
+  });
+  
+  if (isSame) {
+    console.log(`Assertion Passed: ${JSON.stringify(actual)} === ${JSON.stringify(expected)}`);
+    
   } else {
-    console.log(`Assertion Passed: ${actual} === ${expected}`);
+    console.log(`Assertion Failed: ${JSON.stringify(actual)} !== ${JSON.stringify(expected)}`);
   }
 };
 
@@ -35,5 +47,7 @@ function countLetters(input) {
 const result = countLetters("LHL "); // {L: 2, H:1}
 console.log(result);
 
-//const asser2 = assertEqual(result, { L: 2, H: 1 });;
+console.log(Object.keys(result));
+
+assertEqual(result, { L: 2, H: 2 });
 //console.log(asser2);
